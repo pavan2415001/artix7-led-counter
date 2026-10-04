@@ -1,138 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" width="100%" height="100%" font-family="system-ui, -apple-system, 'SF Pro Display', Segoe UI, Roboto, Helvetica, sans-serif">
-  <defs>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#1e293b"/>
-    </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2.5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-
-  <!-- Background -->
-  <rect width="960" height="680" rx="12" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5"/>
-
-  <!-- Header -->
-  <text x="480" y="36" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="700">Mode freq[1:0] = 10 : 5 LED0 Blink Rate</text>
-  <text x="480" y="56" text-anchor="middle" fill="#94a3b8" font-size="12">Limit = 9,999,999 | Terminal Count Period = 100 ms (10 Hz Tick Rate)</text>
-
-  <!-- Section A: 100 MHz Clock Zoom -->
-  <g transform="translate(20, 80)">
-    <rect width="920" height="210" rx="8" fill="#1e293b" opacity="0.7" stroke="#334155"/>
-    <text x="16" y="24" fill="#f8fafc" font-size="13" font-weight="700">A) Prescaler Zoom (1 Clock Cycle = 10 ns)</text>
-
-    <!-- clk waveform -->
-    <text x="16" y="60" fill="#cbd5e1" font-size="12" font-weight="600">clk (100 MHz)</text>
-    <path d="M160,65 L160,45 L195,45 L195,65 L230,65 L230,45 L265,45 L265,65 L300,65" fill="none" stroke="#e2e8f0" stroke-width="2"/>
-    <text x="365" y="60" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
-    <path d="M430,65 L430,45 L465,45 L465,65 L500,65 L500,45 L535,45 L535,65 L570,65 L570,45 L605,45 L605,65 L640,65 L640,45 L675,45 L675,65 L710,65 L710,45 L745,45 L745,65 L780,65" fill="none" stroke="#e2e8f0" stroke-width="2"/>
-
-    <!-- countr bus -->
-    <text x="16" y="110" fill="#cbd5e1" font-size="12" font-weight="600">countr[25:0]</text>
-    <g fill="#0f172a" stroke="#475569" stroke-width="1.5">
-      <rect x="160" y="95" width="70" height="26" rx="4"/>
-      <rect x="230" y="95" width="70" height="26" rx="4"/>
-      <rect x="430" y="95" width="70" height="26" rx="4"/>
-      <rect x="500" y="95" width="70" height="26" rx="4"/>
-      <rect x="570" y="95" width="70" height="26" rx="4" fill="#312e81" stroke="#6366f1"/>
-      <rect x="640" y="95" width="70" height="26" rx="4"/>
-      <rect x="710" y="95" width="70" height="26" rx="4"/>
-    </g>
-    <g fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">
-      <text x="195" y="112">0</text>
-      <text x="265" y="112">1</text>
-      <text x="365" y="112" fill="#64748b">• • •</text>
-      <text x="465" y="112">9,999,997</text>
-      <text x="535" y="112">9,999,998</text>
-      <text x="605" y="112" fill="#818cf8">9,999,999</text>
-      <text x="675" y="112">0</text>
-      <text x="745" y="112">1</text>
-    </g>
-
-    <!-- enable pulse -->
-    <text x="16" y="160" fill="#cbd5e1" font-size="12" font-weight="600">terminal_count</text>
-    <path d="M160,165 L570,165 L570,140 L640,140 L640,165 L780,165" fill="none" stroke="#fb923c" stroke-width="2.5" filter="url(#glow)"/>
-    <text x="605" y="182" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">1-Cycle Enable Pulse</text>
-
-    <!-- count bus -->
-    <text x="16" y="198" fill="#cbd5e1" font-size="12" font-weight="600">count[3:0]</text>
-    <g fill="#0f172a" stroke="#475569" stroke-width="1.5">
-      <rect x="160" y="185" width="410" height="22" rx="4"/>
-      <rect x="570" y="185" width="70" height="22" rx="4"/>
-      <rect x="640" y="185" width="140" height="22" rx="4" fill="#064e3b" stroke="#10b981"/>
-    </g>
-    <g fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">
-      <text x="365" y="200">N</text>
-      <text x="605" y="200">N</text>
-      <text x="710" y="200" fill="#34d399">N + 1</text>
-    </g>
-  </g>
-
-  <!-- Section B: Real-time LED Waveforms -->
-  <g transform="translate(20, 305)">
-    <rect width="920" height="355" rx="8" fill="#1e293b" opacity="0.7" stroke="#334155"/>
-    <text x="16" y="24" fill="#f8fafc" font-size="13" font-weight="700">B) 4-Bit Binary Counter LED Waveforms (2.0 s Time Window)</text>
-
-    <!-- Time Grid Lines -->
-    <g stroke="#334155" stroke-dasharray="4,4" stroke-width="1">
-      <line x1="160" y1="35" x2="160" y2="315"/>
-      <line x1="347.5" y1="35" x2="347.5" y2="315"/>
-      <line x1="535" y1="35" x2="535" y2="315"/>
-      <line x1="722.5" y1="35" x2="722.5" y2="315"/>
-      <line x1="910" y1="35" x2="910" y2="315"/>
-    </g>
-
-    <!-- Enable Ticks -->
-    <text x="16" y="55" fill="#cbd5e1" font-size="12" font-weight="600">terminal_count</text>
-    <line x1="160" y1="58" x2="910" y2="58" stroke="#475569" stroke-width="1.5"/>
-    <rect x="196.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="233.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="271.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="308.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="346.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="383.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="421.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="458.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="496.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="533.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="571.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="608.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="646.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="683.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="721.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="758.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="796.0000000000001" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="833.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="871.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-    <rect x="908.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
-
-    <text x="16" y="105" fill="#fbbf24" font-size="12" font-weight="700">count[0] (LED0)</text>
-    <text x="16" y="120" fill="#64748b" font-size="10">5 Blink Rate</text>
-    <path d="M160,115 L197.5,115 L197.5,85 L235.0,85 L235.0,115 L272.5,115 L272.5,85 L310.0,85 L310.0,115 L347.5,115 L347.5,85 L385.0,85 L385.0,115 L422.5,115 L422.5,85 L460.0,85 L460.0,115 L497.5,115 L497.5,85 L535.0,85 L535.0,115 L572.5,115 L572.5,85 L610.0,85 L610.0,115 L647.5,115 L647.5,85 L685.0,85 L685.0,115 L722.5,115 L722.5,85 L760.0,85 L760.0,115 L797.5000000000001,115 L797.5000000000001,85 L835.0,85 L835.0,115 L872.5,115 L872.5,85 L910.0,85 L910.0,115 L910,115" fill="none" stroke="#fbbf24" stroke-width="2.5" filter="url(#glow)"/>
-
-    <text x="16" y="165" fill="#4ade80" font-size="12" font-weight="700">count[1] (LED1)</text>
-    <text x="16" y="180" fill="#64748b" font-size="10">2.5 Hz</text>
-    <path d="M160,175 L235.0,175 L235.0,145 L310.0,145 L310.0,175 L385.0,175 L385.0,145 L460.0,145 L460.0,175 L535.0,175 L535.0,145 L610.0,145 L610.0,175 L685.0,175 L685.0,145 L760.0,145 L760.0,175 L835.0,175 L835.0,145 L910.0,145 L910.0,175 L910,175" fill="none" stroke="#4ade80" stroke-width="2.5"/>
-
-    <text x="16" y="225" fill="#38bdf8" font-size="12" font-weight="700">count[2] (LED2)</text>
-    <text x="16" y="240" fill="#64748b" font-size="10">1.25 Hz</text>
-    <path d="M160,235 L310.0,235 L310.0,205 L460.0,205 L460.0,235 L610.0,235 L610.0,205 L760.0,205 L760.0,235 L910.0,235 L910.0,205 L910,205" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
-
-    <text x="16" y="285" fill="#a855f7" font-size="12" font-weight="700">count[3] (LED3)</text>
-    <text x="16" y="300" fill="#64748b" font-size="10">0.625 Hz</text>
-    <path d="M160,295 L460.0,295 L460.0,265 L760.0,265 L760.0,295 L910,295" fill="none" stroke="#a855f7" stroke-width="2.5"/>
-
-    <!-- Time Labels -->
-    <g fill="#94a3b8" font-size="11" font-weight="600" text-anchor="middle">
-      <text x="160" y="335">0.0 s</text>
-      <text x="347.5" y="335">0.5 s</text>
-      <text x="535" y="335">1.0 s</text>
-      <text x="722.5" y="335">1.5 s</text>
-      <text x="910" y="335">2.0 s</text>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 778" width="960" height="778" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpkZjFiODQ5YS0yMDI4LTRmNWYtOWI0OS1jNjAwOGU4Y2NhNmUAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaK6MeMsy7wSZgKnmMCy+VcMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDplZDM2NDljNC1kMDU4LTRkYTAtOWVkYi1mOGY4Y2JmOTE4NTNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoPDqAHF9TN0N4S5gawbsLmAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg1pOqmyFYn/+eByET3N6yzGt2tnEW5CGgRxMjDS9T6dekZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaLgeyStDQbET0TabVYa+W/8AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCBdXdy+Qw36MFfo0nVKdO6/w1jI1pKPz8c2YIAGnfnpTGRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjoZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmRmMWI4NDlhLTIwMjgtNGY1Zi05YjQ5LWM2MDA4ZThjY2E2ZS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjJhOTY1NmZkLWVlOTMtNDZkZC04ZGFhLWNhMzU4MzZlNGUzZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDWk6qbIVif/54HIRPc3rLMa3a2cRbkIaBHEyMNL1Pp16JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggjzzALCYX9lDJAhJt2htyFQaLfjO1/Hx6Zuvif4eCJB6iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggEikthf0XbL7CZIQOBhj6TX9nkG2UU7TyEpaNrK+vP490Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQDwfXii25LWwavstAC+1x/WQRxhHB8X4gdm6Wqz7Upq8QAoL4YcFokdiMNsjnf26yJADzrBbf/8bZtiFx+yCfeY=</c2pa:manifest></metadata>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs>
+<rect width="960" height="778" rx="12" fill="url(#bg)" stroke="#334155" stroke-width="1.5"/>
+<text x="480" y="36" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="700">Mode freq[1:0] = 10:  clkf = 5 Hz,  LED0 blinks at 2.5 Hz</text>
+<text x="480" y="57" text-anchor="middle" fill="#94a3b8" font-size="12">limit = 9,999,999  |  clkf toggles every 10,000,000 clk cycles (100 ms)  |  count increments on each rising edge of clkf</text>
+<rect x="20" y="76" width="920" height="326" rx="8" fill="#1e293b" opacity="0.7" stroke="#334155"/>
+<text x="36" y="100" fill="#f8fafc" font-size="13" font-weight="700">A) Zoom on the 100 MHz clock  (1 cell = 1 clk cycle = 10 ns)</text>
+<text x="36" y="139.0" fill="#cbd5e1" font-size="12" font-weight="700">clk (100 MHz)</text>
+<text x="36" y="183.0" fill="#cbd5e1" font-size="12" font-weight="700">countr[25:0]</text>
+<text x="36" y="227.0" fill="#cbd5e1" font-size="12" font-weight="700">countr = limit</text>
+<text x="36" y="271.0" fill="#cbd5e1" font-size="12" font-weight="700">clkf</text>
+<text x="36" y="315.0" fill="#cbd5e1" font-size="12" font-weight="700">count[3:0]</text>
+<path d="M180,148 L180,122 L215.0,122 L215.0,148 L250,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="180" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="215.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">0</text>
+<rect x="180" y="298" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="215.0" y="315.0" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="700">N</text>
+<path d="M250,148 L250,122 L285.0,122 L285.0,148 L320,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="250" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="285.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">1</text>
+<rect x="250" y="298" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="285.0" y="315.0" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="700">N</text>
+<path d="M320,148 L320,122 L355.0,122 L355.0,148 L390,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="320" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="355.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">2</text>
+<rect x="320" y="298" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="355.0" y="315.0" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="700">N</text>
+<text x="425.0" y="140.0" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
+<text x="425.0" y="184.0" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
+<text x="425.0" y="228.0" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
+<text x="425.0" y="272.0" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
+<text x="425.0" y="316.0" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
+<path d="M460,148 L460,122 L495.0,122 L495.0,148 L530,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="460" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="495.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">9,999,997</text>
+<rect x="460" y="298" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="495.0" y="315.0" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="700">N</text>
+<path d="M530,148 L530,122 L565.0,122 L565.0,148 L600,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="530" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="565.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">9,999,998</text>
+<rect x="530" y="298" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="565.0" y="315.0" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="700">N</text>
+<path d="M600,148 L600,122 L635.0,122 L635.0,148 L670,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="600" y="166" width="70" height="26" rx="4" fill="#312e81" stroke="#6366f1" stroke-width="1.5"/>
+<text x="635.0" y="183.0" text-anchor="middle" fill="#818cf8" font-size="10.5" font-weight="600">9,999,999</text>
+<rect x="600" y="298" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="635.0" y="315.0" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="700">N</text>
+<path d="M670,148 L670,122 L705.0,122 L705.0,148 L740,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="670" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="705.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">0</text>
+<rect x="670" y="298" width="70" height="26" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+<text x="705.0" y="315.0" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">N + 1</text>
+<path d="M740,148 L740,122 L775.0,122 L775.0,148 L810,148" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+<rect x="740" y="166" width="70" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+<text x="775.0" y="183.0" text-anchor="middle" fill="#f1f5f9" font-size="10.5" font-weight="600">1</text>
+<rect x="740" y="298" width="70" height="26" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+<text x="775.0" y="315.0" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">N + 1</text>
+<path d="M180,236 L390,236" fill="none" stroke="#fb923c" stroke-width="2.5"/>
+<path d="M460,236 L600,236 L600,210 L670,210 L670,236 L810,236" fill="none" stroke="#fb923c" stroke-width="2.5" stroke-linejoin="miter"/>
+<path d="M180,280 L390,280" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+<path d="M460,280 L670,280 L670,254 L810,254" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linejoin="miter"/>
+<text x="425.0" y="354" text-anchor="middle" fill="#94a3b8" font-size="11">9,999,994 more cycles</text>
+<text x="635.0" y="354" text-anchor="middle" fill="#fb923c" font-size="11" font-weight="700">terminal count</text>
+<text x="670" y="372" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700">clkf rises → count + 1, countr → 0</text>
+<text x="670" y="388" text-anchor="middle" fill="#94a3b8" font-size="11">next terminal count: clkf falls, count unchanged</text>
+<rect x="20" y="416" width="920" height="346" rx="8" fill="#1e293b" opacity="0.7" stroke="#334155"/>
+<text x="36" y="440" fill="#f8fafc" font-size="13" font-weight="700">B) Resulting waveforms over 4 s of real time  (clkf = 5 Hz)</text>
+<line x1="180.0" y1="452" x2="180.0" y2="718" stroke="#334155" stroke-dasharray="4,4" stroke-width="1"/>
+<text x="180.0" y="736" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">0 s</text>
+<line x1="362.5" y1="452" x2="362.5" y2="718" stroke="#334155" stroke-dasharray="4,4" stroke-width="1"/>
+<text x="362.5" y="736" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">1 s</text>
+<line x1="545.0" y1="452" x2="545.0" y2="718" stroke="#334155" stroke-dasharray="4,4" stroke-width="1"/>
+<text x="545.0" y="736" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">2 s</text>
+<line x1="727.5" y1="452" x2="727.5" y2="718" stroke="#334155" stroke-dasharray="4,4" stroke-width="1"/>
+<text x="727.5" y="736" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">3 s</text>
+<line x1="910.0" y1="452" x2="910.0" y2="718" stroke="#334155" stroke-dasharray="4,4" stroke-width="1"/>
+<text x="910.0" y="736" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">4 s</text>
+<text x="36" y="474" fill="#a78bfa" font-size="12" font-weight="700">clkf</text>
+<text x="36" y="488" fill="#64748b" font-size="10">5 Hz</text>
+<path d="M180.0,488 L180.0,488 L198.2,488 L198.2,462 L216.5,462 L216.5,488 L234.8,488 L234.8,462 L253.0,462 L253.0,488 L271.2,488 L271.2,462 L289.5,462 L289.5,488 L307.8,488 L307.8,462 L326.0,462 L326.0,488 L344.2,488 L344.2,462 L362.5,462 L362.5,488 L380.8,488 L380.8,462 L399.0,462 L399.0,488 L417.2,488 L417.2,462 L435.5,462 L435.5,488 L453.8,488 L453.8,462 L472.0,462 L472.0,488 L490.2,488 L490.2,462 L508.5,462 L508.5,488 L526.8,488 L526.8,462 L545.0,462 L545.0,488 L563.2,488 L563.2,462 L581.5,462 L581.5,488 L599.8,488 L599.8,462 L618.0,462 L618.0,488 L636.2,488 L636.2,462 L654.5,462 L654.5,488 L672.8,488 L672.8,462 L691.0,462 L691.0,488 L709.2,488 L709.2,462 L727.5,462 L727.5,488 L745.8,488 L745.8,462 L764.0,462 L764.0,488 L782.2,488 L782.2,462 L800.5,462 L800.5,488 L818.8,488 L818.8,462 L837.0,462 L837.0,488 L855.2,488 L855.2,462 L873.5,462 L873.5,488 L891.8,488 L891.8,462 L910.0,462" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+<text x="36" y="526" fill="#38bdf8" font-size="12" font-weight="700">count[0] (LED0)</text>
+<text x="36" y="540" fill="#64748b" font-size="10">2.5 Hz</text>
+<path d="M180.0,540 L180.0,540 L198.2,540 L198.2,514 L216.5,514 L216.5,514 L234.8,514 L234.8,540 L253.0,540 L253.0,540 L271.2,540 L271.2,514 L289.5,514 L289.5,514 L307.8,514 L307.8,540 L326.0,540 L326.0,540 L344.2,540 L344.2,514 L362.5,514 L362.5,514 L380.8,514 L380.8,540 L399.0,540 L399.0,540 L417.2,540 L417.2,514 L435.5,514 L435.5,514 L453.8,514 L453.8,540 L472.0,540 L472.0,540 L490.2,540 L490.2,514 L508.5,514 L508.5,514 L526.8,514 L526.8,540 L545.0,540 L545.0,540 L563.2,540 L563.2,514 L581.5,514 L581.5,514 L599.8,514 L599.8,540 L618.0,540 L618.0,540 L636.2,540 L636.2,514 L654.5,514 L654.5,514 L672.8,514 L672.8,540 L691.0,540 L691.0,540 L709.2,540 L709.2,514 L727.5,514 L727.5,514 L745.8,514 L745.8,540 L764.0,540 L764.0,540 L782.2,540 L782.2,514 L800.5,514 L800.5,514 L818.8,514 L818.8,540 L837.0,540 L837.0,540 L855.2,540 L855.2,514 L873.5,514 L873.5,514 L891.8,514 L891.8,540 L910.0,540" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+<text x="36" y="578" fill="#4ade80" font-size="12" font-weight="700">count[1] (LED1)</text>
+<text x="36" y="592" fill="#64748b" font-size="10">1.25 Hz</text>
+<path d="M180.0,592 L180.0,592 L198.2,592 L198.2,592 L216.5,592 L216.5,592 L234.8,592 L234.8,566 L253.0,566 L253.0,566 L271.2,566 L271.2,566 L289.5,566 L289.5,566 L307.8,566 L307.8,592 L326.0,592 L326.0,592 L344.2,592 L344.2,592 L362.5,592 L362.5,592 L380.8,592 L380.8,566 L399.0,566 L399.0,566 L417.2,566 L417.2,566 L435.5,566 L435.5,566 L453.8,566 L453.8,592 L472.0,592 L472.0,592 L490.2,592 L490.2,592 L508.5,592 L508.5,592 L526.8,592 L526.8,566 L545.0,566 L545.0,566 L563.2,566 L563.2,566 L581.5,566 L581.5,566 L599.8,566 L599.8,592 L618.0,592 L618.0,592 L636.2,592 L636.2,592 L654.5,592 L654.5,592 L672.8,592 L672.8,566 L691.0,566 L691.0,566 L709.2,566 L709.2,566 L727.5,566 L727.5,566 L745.8,566 L745.8,592 L764.0,592 L764.0,592 L782.2,592 L782.2,592 L800.5,592 L800.5,592 L818.8,592 L818.8,566 L837.0,566 L837.0,566 L855.2,566 L855.2,566 L873.5,566 L873.5,566 L891.8,566 L891.8,592 L910.0,592" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+<text x="36" y="630" fill="#f472b6" font-size="12" font-weight="700">count[2] (LED2)</text>
+<text x="36" y="644" fill="#64748b" font-size="10">0.625 Hz</text>
+<path d="M180.0,644 L180.0,644 L198.2,644 L198.2,644 L216.5,644 L216.5,644 L234.8,644 L234.8,644 L253.0,644 L253.0,644 L271.2,644 L271.2,644 L289.5,644 L289.5,644 L307.8,644 L307.8,618 L326.0,618 L326.0,618 L344.2,618 L344.2,618 L362.5,618 L362.5,618 L380.8,618 L380.8,618 L399.0,618 L399.0,618 L417.2,618 L417.2,618 L435.5,618 L435.5,618 L453.8,618 L453.8,644 L472.0,644 L472.0,644 L490.2,644 L490.2,644 L508.5,644 L508.5,644 L526.8,644 L526.8,644 L545.0,644 L545.0,644 L563.2,644 L563.2,644 L581.5,644 L581.5,644 L599.8,644 L599.8,618 L618.0,618 L618.0,618 L636.2,618 L636.2,618 L654.5,618 L654.5,618 L672.8,618 L672.8,618 L691.0,618 L691.0,618 L709.2,618 L709.2,618 L727.5,618 L727.5,618 L745.8,618 L745.8,644 L764.0,644 L764.0,644 L782.2,644 L782.2,644 L800.5,644 L800.5,644 L818.8,644 L818.8,644 L837.0,644 L837.0,644 L855.2,644 L855.2,644 L873.5,644 L873.5,644 L891.8,644 L891.8,618 L910.0,618" fill="none" stroke="#f472b6" stroke-width="2.5"/>
+<text x="36" y="682" fill="#fbbf24" font-size="12" font-weight="700">count[3] (LED3)</text>
+<text x="36" y="696" fill="#64748b" font-size="10">0.3125 Hz</text>
+<path d="M180.0,696 L180.0,696 L198.2,696 L198.2,696 L216.5,696 L216.5,696 L234.8,696 L234.8,696 L253.0,696 L253.0,696 L271.2,696 L271.2,696 L289.5,696 L289.5,696 L307.8,696 L307.8,696 L326.0,696 L326.0,696 L344.2,696 L344.2,696 L362.5,696 L362.5,696 L380.8,696 L380.8,696 L399.0,696 L399.0,696 L417.2,696 L417.2,696 L435.5,696 L435.5,696 L453.8,696 L453.8,670 L472.0,670 L472.0,670 L490.2,670 L490.2,670 L508.5,670 L508.5,670 L526.8,670 L526.8,670 L545.0,670 L545.0,670 L563.2,670 L563.2,670 L581.5,670 L581.5,670 L599.8,670 L599.8,670 L618.0,670 L618.0,670 L636.2,670 L636.2,670 L654.5,670 L654.5,670 L672.8,670 L672.8,670 L691.0,670 L691.0,670 L709.2,670 L709.2,670 L727.5,670 L727.5,670 L745.8,670 L745.8,696 L764.0,696 L764.0,696 L782.2,696 L782.2,696 L800.5,696 L800.5,696 L818.8,696 L818.8,696 L837.0,696 L837.0,696 L855.2,696 L855.2,696 L873.5,696 L873.5,696 L891.8,696 L891.8,696 L910.0,696" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
 </svg>

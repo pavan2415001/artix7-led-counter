@@ -65,9 +65,9 @@ The board oscillator runs at **100 MHz**, so one clock period is **10 ns**. That
 
 ### The Formula
 
-$$\text{limit} + 1 = \frac{\text{CLK\_HZ}}{\text{tick\_Hz}}$$
+$$\text{limit} + 1 = \frac{\text{CLK}_{\text{HZ}}}{\text{tick}_{\text{Hz}}}$$
 
-Where $\text{tick\_Hz} = 2 \times \text{LED0 blink frequency}$ (LED0 needs two ticks per blink: ON, then OFF).
+Where $\text{tick}_{\text{Hz}} = 2 \times \text{LED0 blink frequency}$ (LED0 needs two ticks per blink: ON, then OFF).
 
 For a **1 Hz LED0 blink**:
 $$\text{tick} = 2\text{ Hz} \implies \text{limit} + 1 = \frac{100,000,000}{2} = 50,000,000 \implies \text{limit} = 49,999,999$$

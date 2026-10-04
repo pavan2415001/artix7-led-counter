@@ -10,6 +10,7 @@ A Verilog design for the **Xilinx Artix-7 XC7A35T** FPGA that divides the on-boa
 ---
 
 ## Contents
+- [Demo Videos](#demo-videos)
 - [Features](#features)
 - [How the Clock Division Works](#how-the-clock-division-works)
 - [Frequency Table](#frequency-table)
@@ -23,6 +24,18 @@ A Verilog design for the **Xilinx Artix-7 XC7A35T** FPGA that divides the on-boa
 - [Build and Run](#build-and-run)
 - [Repository Structure](#repository-structure)
 - [License](#license)
+
+---
+
+## Demo Videos
+
+| Mode | `freq[1:0]` | LED0 Blink Rate | Video |
+| :---: | :---: | :---: | :---: |
+| **1 Hz** | `00` | 1 Hz | ![](videos/1hz.mp4) |
+| **2 Hz** | `01` | 2 Hz | ![](videos/2hz.mp4) |
+| **5 Hz** | `10` | 5 Hz | ![](videos/5hz.mp4) |
+| **10 Hz** | `11` | 10 Hz | ![](videos/10hz.mp4) |
+| **All Speeds** | `00 → 01 → 10 → 11` | 1 → 2 → 5 → 10 Hz | ![](videos/all.mp4) |
 
 ---
 
@@ -155,12 +168,18 @@ Artix7_LED_Counter/
 │   └── led.v                 # Top Verilog module
 ├── constraints/
 │   └── constraints.xdc       # Pin & clock constraints
-└── docs/
-    ├── waveform_overview.svg # Comparison timing diagram
-    ├── waveform_1hz.svg      # 1 Hz mode timing diagram
-    ├── waveform_2hz.svg      # 2 Hz mode timing diagram
-    ├── waveform_5hz.svg      # 5 Hz mode timing diagram
-    └── waveform_10hz.svg     # 10 Hz mode timing diagram
+├── docs/
+│   ├── waveform_overview.svg # Comparison timing diagram
+│   ├── waveform_1hz.svg      # 1 Hz mode timing diagram
+│   ├── waveform_2hz.svg      # 2 Hz mode timing diagram
+│   ├── waveform_5hz.svg      # 5 Hz mode timing diagram
+│   └── waveform_10hz.svg     # 10 Hz mode timing diagram
+└── videos/
+    ├── 1hz.mp4               # 1 Hz demo video
+    ├── 2hz.mp4               # 2 Hz demo video
+    ├── 5hz.mp4               # 5 Hz demo video
+    ├── 10hz.mp4              # 10 Hz demo video
+    └── all.mp4               # All speeds demo video
 ```
 
 ---

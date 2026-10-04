@@ -29,13 +29,13 @@ A Verilog design for the **Xilinx Artix-7 XC7A35T** FPGA that divides the on-boa
 
 ## Demo Videos
 
-| Mode | `freq[1:0]` | LED0 Blink Rate | Video |
+| Mode | `freq[1:0]` | LED0 Blink Rate | Hardware Demo Video |
 | :---: | :---: | :---: | :---: |
-| **1 Hz** | `00` | 1 Hz | ![](videos/1hz.mp4) |
-| **2 Hz** | `01` | 2 Hz | ![](videos/2hz.mp4) |
-| **5 Hz** | `10` | 5 Hz | ![](videos/5hz.mp4) |
-| **10 Hz** | `11` | 10 Hz | ![](videos/10hz.mp4) |
-| **All Speeds** | `00 → 01 → 10 → 11` | 1 → 2 → 5 → 10 Hz | ![](videos/all.mp4) |
+| **1 Hz** | `00` | 1 Hz | [🎥 Watch Demo Video](videos/1hz.mp4) |
+| **2 Hz** | `01` | 2 Hz | [🎥 Watch Demo Video](videos/2hz.mp4) |
+| **5 Hz** | `10` | 5 Hz | [🎥 Watch Demo Video](videos/5hz.mp4) |
+| **10 Hz** | `11` | 10 Hz | [🎥 Watch Demo Video](videos/10hz.mp4) |
+| **All Speeds** | `00 → 01 → 10 → 11` | 1 → 2 → 5 → 10 Hz | [🎥 Watch Full Demo Video](videos/all.mp4) |
 
 ---
 

@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" width="100%" height="100%" font-family="system-ui, -apple-system, 'SF Pro Display', Segoe UI, Roboto, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="680" rx="12" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <text x="480" y="36" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="700">Mode freq[1:0] = 11 : 10 LED0 Blink Rate</text>
+  <text x="480" y="56" text-anchor="middle" fill="#94a3b8" font-size="12">Limit = 4,999,999 | Terminal Count Period = 50 ms (20 Hz Tick Rate)</text>
+
+  <!-- Section A: 100 MHz Clock Zoom -->
+  <g transform="translate(20, 80)">
+    <rect width="920" height="210" rx="8" fill="#1e293b" opacity="0.7" stroke="#334155"/>
+    <text x="16" y="24" fill="#f8fafc" font-size="13" font-weight="700">A) Prescaler Zoom (1 Clock Cycle = 10 ns)</text>
+
+    <!-- clk waveform -->
+    <text x="16" y="60" fill="#cbd5e1" font-size="12" font-weight="600">clk (100 MHz)</text>
+    <path d="M160,65 L160,45 L195,45 L195,65 L230,65 L230,45 L265,45 L265,65 L300,65" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="365" y="60" text-anchor="middle" fill="#64748b" font-size="14" font-weight="700">• • •</text>
+    <path d="M430,65 L430,45 L465,45 L465,65 L500,65 L500,45 L535,45 L535,65 L570,65 L570,45 L605,45 L605,65 L640,65 L640,45 L675,45 L675,65 L710,65 L710,45 L745,45 L745,65 L780,65" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+
+    <!-- countr bus -->
+    <text x="16" y="110" fill="#cbd5e1" font-size="12" font-weight="600">countr[25:0]</text>
+    <g fill="#0f172a" stroke="#475569" stroke-width="1.5">
+      <rect x="160" y="95" width="70" height="26" rx="4"/>
+      <rect x="230" y="95" width="70" height="26" rx="4"/>
+      <rect x="430" y="95" width="70" height="26" rx="4"/>
+      <rect x="500" y="95" width="70" height="26" rx="4"/>
+      <rect x="570" y="95" width="70" height="26" rx="4" fill="#312e81" stroke="#6366f1"/>
+      <rect x="640" y="95" width="70" height="26" rx="4"/>
+      <rect x="710" y="95" width="70" height="26" rx="4"/>
+    </g>
+    <g fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">
+      <text x="195" y="112">0</text>
+      <text x="265" y="112">1</text>
+      <text x="365" y="112" fill="#64748b">• • •</text>
+      <text x="465" y="112">4,999,997</text>
+      <text x="535" y="112">4,999,998</text>
+      <text x="605" y="112" fill="#818cf8">4,999,999</text>
+      <text x="675" y="112">0</text>
+      <text x="745" y="112">1</text>
+    </g>
+
+    <!-- enable pulse -->
+    <text x="16" y="160" fill="#cbd5e1" font-size="12" font-weight="600">terminal_count</text>
+    <path d="M160,165 L570,165 L570,140 L640,140 L640,165 L780,165" fill="none" stroke="#fb923c" stroke-width="2.5" filter="url(#glow)"/>
+    <text x="605" y="182" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="700">1-Cycle Enable Pulse</text>
+
+    <!-- count bus -->
+    <text x="16" y="198" fill="#cbd5e1" font-size="12" font-weight="600">count[3:0]</text>
+    <g fill="#0f172a" stroke="#475569" stroke-width="1.5">
+      <rect x="160" y="185" width="410" height="22" rx="4"/>
+      <rect x="570" y="185" width="70" height="22" rx="4"/>
+      <rect x="640" y="185" width="140" height="22" rx="4" fill="#064e3b" stroke="#10b981"/>
+    </g>
+    <g fill="#f1f5f9" font-size="11" font-weight="600" text-anchor="middle">
+      <text x="365" y="200">N</text>
+      <text x="605" y="200">N</text>
+      <text x="710" y="200" fill="#34d399">N + 1</text>
+    </g>
+  </g>
+
+  <!-- Section B: Real-time LED Waveforms -->
+  <g transform="translate(20, 305)">
+    <rect width="920" height="355" rx="8" fill="#1e293b" opacity="0.7" stroke="#334155"/>
+    <text x="16" y="24" fill="#f8fafc" font-size="13" font-weight="700">B) 4-Bit Binary Counter LED Waveforms (2.0 s Time Window)</text>
+
+    <!-- Time Grid Lines -->
+    <g stroke="#334155" stroke-dasharray="4,4" stroke-width="1">
+      <line x1="160" y1="35" x2="160" y2="315"/>
+      <line x1="347.5" y1="35" x2="347.5" y2="315"/>
+      <line x1="535" y1="35" x2="535" y2="315"/>
+      <line x1="722.5" y1="35" x2="722.5" y2="315"/>
+      <line x1="910" y1="35" x2="910" y2="315"/>
+    </g>
+
+    <!-- Enable Ticks -->
+    <text x="16" y="55" fill="#cbd5e1" font-size="12" font-weight="600">terminal_count</text>
+    <line x1="160" y1="58" x2="910" y2="58" stroke="#475569" stroke-width="1.5"/>
+    <rect x="177.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="196.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="214.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="233.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="252.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="271.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="289.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="308.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="327.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="346.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="364.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="383.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="402.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="421.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="439.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="458.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="477.25000000000006" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="496.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="514.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="533.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="552.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="571.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="589.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="608.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="627.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="646.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="664.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="683.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="702.2500000000001" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="721.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="739.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="758.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="777.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="796.0000000000001" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="814.75" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="833.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="852.25" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="871.0" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="889.7500000000001" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+    <rect x="908.5" y="42" width="3" height="16" fill="#fb923c" rx="1"/>
+
+    <text x="16" y="105" fill="#f43f5e" font-size="12" font-weight="700">count[0] (LED0)</text>
+    <text x="16" y="120" fill="#64748b" font-size="10">10 Blink Rate</text>
+    <path d="M160,115 L178.75,115 L178.75,85 L197.5,85 L197.5,115 L216.25,115 L216.25,85 L235.0,85 L235.0,115 L253.75,115 L253.75,85 L272.5,85 L272.5,115 L291.25,115 L291.25,85 L310.0,85 L310.0,115 L328.75,115 L328.75,85 L347.5,85 L347.5,115 L366.25,115 L366.25,85 L385.0,85 L385.0,115 L403.75,115 L403.75,85 L422.5,85 L422.5,115 L441.25,115 L441.25,85 L460.0,85 L460.0,115 L478.75000000000006,115 L478.75000000000006,85 L497.5,85 L497.5,115 L516.25,115 L516.25,85 L535.0,85 L535.0,115 L553.75,115 L553.75,85 L572.5,85 L572.5,115 L591.25,115 L591.25,85 L610.0,85 L610.0,115 L628.75,115 L628.75,85 L647.5,85 L647.5,115 L666.25,115 L666.25,85 L685.0,85 L685.0,115 L703.7500000000001,115 L703.7500000000001,85 L722.5,85 L722.5,115 L741.25,115 L741.25,85 L760.0,85 L760.0,115 L778.75,115 L778.75,85 L797.5000000000001,85 L797.5000000000001,115 L816.25,115 L816.25,85 L835.0,85 L835.0,115 L853.75,115 L853.75,85 L872.5,85 L872.5,115 L891.2500000000001,115 L891.2500000000001,85 L910.0,85 L910.0,115 L910,115" fill="none" stroke="#f43f5e" stroke-width="2.5" filter="url(#glow)"/>
+
+    <text x="16" y="165" fill="#4ade80" font-size="12" font-weight="700">count[1] (LED1)</text>
+    <text x="16" y="180" fill="#64748b" font-size="10">5 Hz</text>
+    <path d="M160,175 L197.5,175 L197.5,145 L235.0,145 L235.0,175 L272.5,175 L272.5,145 L310.0,145 L310.0,175 L347.5,175 L347.5,145 L385.0,145 L385.0,175 L422.5,175 L422.5,145 L460.0,145 L460.0,175 L497.5,175 L497.5,145 L535.0,145 L535.0,175 L572.5,175 L572.5,145 L610.0,145 L610.0,175 L647.5,175 L647.5,145 L685.0,145 L685.0,175 L722.5,175 L722.5,145 L760.0,145 L760.0,175 L797.5000000000001,175 L797.5000000000001,145 L835.0,145 L835.0,175 L872.5,175 L872.5,145 L910.0,145 L910.0,175 L910,175" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+
+    <text x="16" y="225" fill="#38bdf8" font-size="12" font-weight="700">count[2] (LED2)</text>
+    <text x="16" y="240" fill="#64748b" font-size="10">2.5 Hz</text>
+    <path d="M160,235 L235.0,235 L235.0,205 L310.0,205 L310.0,235 L385.0,235 L385.0,205 L460.0,205 L460.0,235 L535.0,235 L535.0,205 L610.0,205 L610.0,235 L685.0,235 L685.0,205 L760.0,205 L760.0,235 L835.0,235 L835.0,205 L910.0,205 L910.0,235 L910,235" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+
+    <text x="16" y="285" fill="#a855f7" font-size="12" font-weight="700">count[3] (LED3)</text>
+    <text x="16" y="300" fill="#64748b" font-size="10">1.25 Hz</text>
+    <path d="M160,295 L310.0,295 L310.0,265 L460.0,265 L460.0,295 L610.0,295 L610.0,265 L760.0,265 L760.0,295 L910.0,295 L910.0,265 L910,265" fill="none" stroke="#a855f7" stroke-width="2.5"/>
+
+    <!-- Time Labels -->
+    <g fill="#94a3b8" font-size="11" font-weight="600" text-anchor="middle">
+      <text x="160" y="335">0.0 s</text>
+      <text x="347.5" y="335">0.5 s</text>
+      <text x="535" y="335">1.0 s</text>
+      <text x="722.5" y="335">1.5 s</text>
+      <text x="910" y="335">2.0 s</text>
+    </g>
+  </g>
+</svg>

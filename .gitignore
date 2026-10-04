@@ -1,0 +1,13 @@
+# Vivado temporary files & directories
+.Xil/
+xsim.dir/
+*.log
+*.jou
+*.pb
+*.wdb
+*.str
+*.vcd
+
+# Python cached files
+__pycache__/
+*.pyc
